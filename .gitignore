@@ -6,3 +6,5 @@
 /common/build/classes/kotlin/desktop/main/
 /desktop/build/
 /desktop/build/classes/kotlin/jvm/main/
+
+/common/src/commonMain/kotlin/com/qwert2603/multi_public/common/Config.kt
