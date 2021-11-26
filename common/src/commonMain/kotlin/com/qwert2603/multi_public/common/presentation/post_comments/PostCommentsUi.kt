@@ -30,6 +30,7 @@ fun PostCommentsUi(
             TopAppBar(
                 title = { Text("Comments") },
                 navigationIcon = {
+                    // todo: fix ripple and offset
                     Icon(
                         Icons.Default.ArrowBack,
                         contentDescription = "Back",

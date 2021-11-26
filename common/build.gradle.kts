@@ -25,6 +25,7 @@ kotlin {
                 api(compose.foundation)
                 api(compose.material)
 
+                // todo: version variables
                 api("io.ktor:ktor-client-core:1.6.5")
                 api("io.ktor:ktor-client-cio:1.6.5")
                 api("io.ktor:ktor-client-serialization:1.6.5")
@@ -62,6 +63,7 @@ kotlin {
     }
 }
 
+// todo: common config
 android {
     compileSdkVersion(31)
     sourceSets["main"].manifest.srcFile("src/androidMain/AndroidManifest.xml")

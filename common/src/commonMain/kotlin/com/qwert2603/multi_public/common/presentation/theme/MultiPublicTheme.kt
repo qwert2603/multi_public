@@ -14,6 +14,10 @@ fun MultiPublicTheme(content: @Composable () -> Unit) {
                 fontSize = 14.sp,
                 fontWeight = FontWeight.Bold,
             ),
+            body1 = TextStyle(
+                fontSize = 14.sp,
+                fontWeight = FontWeight.Normal,
+            ),
             caption = TextStyle(
                 fontSize = 12.sp,
                 fontWeight = FontWeight.Bold,
