@@ -8,7 +8,6 @@ group = "com.qwert2603.multi_public"
 version = "1.0"
 
 repositories {
-    jcenter()
 }
 
 dependencies {
