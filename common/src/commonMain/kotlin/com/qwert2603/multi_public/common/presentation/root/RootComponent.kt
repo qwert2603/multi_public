@@ -12,12 +12,12 @@ import com.qwert2603.multi_public.common.presentation.post_comments.PostComments
 import com.qwert2603.multi_public.common.presentation.post_comments.PostCommentsComponent
 import com.qwert2603.multi_public.common.presentation.posts_list.PostsList
 import com.qwert2603.multi_public.common.presentation.posts_list.PostsListComponent
-import org.koin.core.Koin
+import org.koin.core.component.KoinComponent
+import org.koin.core.component.get
 
 class RootComponent(
     componentContext: ComponentContext,
-    private val koin: Koin,
-) : Root, ComponentContext by componentContext {
+) : Root, ComponentContext by componentContext, KoinComponent {
 
     private val router = router<Config, Root.Child>(
         initialConfiguration = Config.PostsList,
@@ -35,7 +35,7 @@ class RootComponent(
     private fun itemList(componentContext: ComponentContext): PostsList =
         PostsListComponent(
             componentContext = componentContext,
-            postsInteractor = koin.get(),
+            postsInteractor = get(),
             onPostSelected = { router.push(Config.PostComments(postId = it)) }
         )
 
@@ -44,7 +44,7 @@ class RootComponent(
             componentContext = componentContext,
             postId = config.postId,
             onBackClicked = router::pop,
-            postsInteractor = koin.get(),
+            postsInteractor = get(),
         )
 
     private sealed class Config : Parcelable {
