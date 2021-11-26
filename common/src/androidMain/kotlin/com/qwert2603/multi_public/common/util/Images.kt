@@ -1,7 +1,9 @@
 package com.qwert2603.multi_public.common.util
 
 import androidx.compose.foundation.Image
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import coil.compose.rememberImagePainter
@@ -12,11 +14,22 @@ actual fun UrlImage(
     placeHolder: ImageVector,
     modifier: Modifier,
 ) {
-    Image(
-        painter = rememberImagePainter(imageUrl) {
-            // todo: placeHolder
-        },
-        contentDescription = null,
-        modifier = modifier,
-    )
+    Box(modifier) {
+        var imageLoaded by remember(imageUrl) { mutableStateOf(false) }
+
+        Image(
+            painter = rememberImagePainter(imageUrl) {
+                listener(onSuccess = { _, _ -> imageLoaded = true })
+            },
+            contentDescription = null,
+            modifier = Modifier.fillMaxSize(),
+        )
+        if (!imageLoaded) {
+            Image(
+                imageVector = placeHolder,
+                contentDescription = null,
+                modifier = Modifier.fillMaxSize(),
+            )
+        }
+    }
 }
