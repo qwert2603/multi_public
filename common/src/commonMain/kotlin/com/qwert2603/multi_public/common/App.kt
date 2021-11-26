@@ -7,12 +7,12 @@ import com.arkivanov.essenty.lifecycle.resume
 import com.qwert2603.multi_public.common.di.appModule
 import com.qwert2603.multi_public.common.presentation.root.RootComponent
 import com.qwert2603.multi_public.common.presentation.root.RootUi
-import com.qwert2603.multi_public.common.presentation.theme.ComposeDesktopTestTheme
+import com.qwert2603.multi_public.common.presentation.theme.MultiPublicTheme
 import org.koin.core.context.startKoin
 
 @Composable
 fun App() {
-    ComposeDesktopTestTheme {
+    MultiPublicTheme {
         val lifecycleRegistry = LifecycleRegistry()
         lifecycleRegistry.resume()
 

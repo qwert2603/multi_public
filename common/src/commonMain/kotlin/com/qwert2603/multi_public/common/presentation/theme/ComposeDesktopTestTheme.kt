@@ -7,7 +7,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ComposeDesktopTestTheme(content: @Composable () -> Unit) {
+fun MultiPublicTheme(content: @Composable () -> Unit) {
     MaterialTheme(
         typography = MaterialTheme.typography.copy(
             h6 = TextStyle(
