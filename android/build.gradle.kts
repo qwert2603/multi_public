@@ -1,28 +1,25 @@
 plugins {
-    id("org.jetbrains.compose") version "1.0.0-rc4"
-    id("com.android.application")
-    kotlin("android")
+    `jetbrains-compose`
+    com.android.application
+    `kotlin-android`
 }
 
-group = "com.qwert2603.multi_public"
-version = "1.0"
-
-repositories {
-}
+group = Configs.group
+version = Configs.versionName
 
 dependencies {
-    implementation(project(":common"))
-    implementation("androidx.activity:activity-compose:1.4.0")
+    implementation(project(Modules.common))
+    implementation(Deps.AndroidX.activityCompose)
 }
 
 android {
-    compileSdkVersion(31)
+    compileSdkVersion(Configs.compileSdk)
     defaultConfig {
-        applicationId = "com.qwert2603.multi_public.android"
-        minSdkVersion(24)
-        targetSdkVersion(31)
-        versionCode = 1
-        versionName = "1.0"
+        applicationId = Configs.applicationId
+        minSdkVersion(Configs.minSdk)
+        targetSdkVersion(Configs.targetSdk)
+        versionCode = Configs.versionCode
+        versionName = Configs.versionName
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
