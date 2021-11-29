@@ -7,4 +7,4 @@
 /desktop/build/
 /desktop/build/classes/kotlin/jvm/main/
 
-/common/src/commonMain/kotlin/com/qwert2603/multi_public/common/Config.kt
+/common/app/src/commonMain/kotlin/com/qwert2603/multi_public/common/Config.kt

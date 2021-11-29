@@ -12,6 +12,6 @@ rootProject.name = "multi_public"
 
 include(":android")
 include(":desktop")
-include(":common")
+include(":common:app")
 include(":about")
 include(":common:util")
