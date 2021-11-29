@@ -2,7 +2,11 @@ package com.qwert2603.multi_public.common.presentation.post_comments
 
 import com.arkivanov.decompose.ComponentContext
 import com.qwert2603.multi_public.common.domain.PostsInteractor
-import com.qwert2603.multi_public.common.util.*
+import com.qwert2603.multi_public.common.util.createComponentScope
+import com.qwert2603.multi_public.util.CallResult
+import com.qwert2603.multi_public.util.Error
+import com.qwert2603.multi_public.util.LoadingState
+import com.qwert2603.multi_public.util.isError
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch

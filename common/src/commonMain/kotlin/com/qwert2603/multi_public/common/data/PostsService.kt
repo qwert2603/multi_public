@@ -3,8 +3,8 @@ package com.qwert2603.multi_public.common.data
 import com.qwert2603.multi_public.common.Config
 import com.qwert2603.multi_public.common.domain.Post
 import com.qwert2603.multi_public.common.domain.PostComment
-import com.qwert2603.multi_public.common.util.CallResult
-import com.qwert2603.multi_public.common.util.callForResult
+import com.qwert2603.multi_public.util.CallResult
+import com.qwert2603.multi_public.util.callForResult
 import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.features.json.*

@@ -1,4 +1,4 @@
-package com.qwert2603.multi_public.common.util
+package com.qwert2603.multi_public.util
 
 import kotlinx.coroutines.CancellationException
 
@@ -6,7 +6,7 @@ sealed interface CallResult<out T> {
 
     data class Error(val error: Throwable) : CallResult<Nothing> {
         init {
-            error.printStackTrace()
+            error.printStackTrace()//todo: logging
         }
     }
 

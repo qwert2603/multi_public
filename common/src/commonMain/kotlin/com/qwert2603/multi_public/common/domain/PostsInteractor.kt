@@ -1,7 +1,7 @@
 package com.qwert2603.multi_public.common.domain
 
 import com.qwert2603.multi_public.common.data.PostsService
-import com.qwert2603.multi_public.common.util.CallResult
+import com.qwert2603.multi_public.util.CallResult
 
 class PostsInteractor(
     private val postsService: PostsService,

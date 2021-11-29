@@ -11,6 +11,7 @@ kotlin {
         val commonMain by getting {
             dependencies {
                 implementation(project(Modules.about))
+                implementation(project(Modules.util))
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)

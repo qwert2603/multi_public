@@ -6,6 +6,7 @@ internal object Versions {
 
     object KotlinX {
         const val serializationJson = "1.3.1"
+        const val coroutines = "1.6.0-RC"
     }
 
     object AndroidX {

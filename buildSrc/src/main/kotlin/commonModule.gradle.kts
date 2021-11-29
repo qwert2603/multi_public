@@ -16,6 +16,9 @@ kotlin {
     }
     sourceSets {
         val commonMain by getting {
+            dependencies {
+                api(Deps.KotlinX.Coroutines.core)
+            }
         }
         val androidMain by getting {
         }

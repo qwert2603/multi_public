@@ -1,4 +1,4 @@
-package com.qwert2603.multi_public.common.util
+package com.qwert2603.multi_public.util
 
 sealed interface LoadingState<out E, out T> {
     object None : LoadingState<Nothing, Nothing>

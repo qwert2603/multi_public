@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import com.arkivanov.decompose.extensions.compose.jetbrains.Children
 import com.qwert2603.multi_public.common.presentation.post_comments.PostCommentsUi
 import com.qwert2603.multi_public.common.presentation.posts_list.PostsListUi
-import com.qwert2603.multi_public.common.util.allCases
+import com.qwert2603.multi_public.util.allCases
 
 @Composable
 fun RootUi(component: Root) {

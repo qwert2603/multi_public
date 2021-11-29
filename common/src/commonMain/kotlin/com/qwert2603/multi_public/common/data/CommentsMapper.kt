@@ -1,7 +1,7 @@
 package com.qwert2603.multi_public.common.data
 
 import com.qwert2603.multi_public.common.domain.PostComment
-import com.qwert2603.multi_public.common.util.ifOrNull
+import com.qwert2603.multi_public.util.ifOrNull
 
 class CommentsMapper {
 

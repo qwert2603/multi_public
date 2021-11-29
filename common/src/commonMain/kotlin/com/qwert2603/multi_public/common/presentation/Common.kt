@@ -8,8 +8,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.qwert2603.multi_public.common.util.LoadingState
-import com.qwert2603.multi_public.common.util.allCases
+import com.qwert2603.multi_public.util.allCases
+import com.qwert2603.multi_public.util.LoadingState
 
 @Composable
 fun FullscreenProgressIndicator(modifier: Modifier = Modifier) {

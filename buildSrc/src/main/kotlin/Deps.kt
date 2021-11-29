@@ -3,6 +3,11 @@ object Deps {
     object KotlinX {
         const val serializationJson =
             "org.jetbrains.kotlinx:kotlinx-serialization-json:${Versions.KotlinX.serializationJson}"
+
+        object Coroutines {
+            const val core = "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.KotlinX.coroutines}"
+            const val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.KotlinX.coroutines}"
+        }
     }
 
     object AndroidX {

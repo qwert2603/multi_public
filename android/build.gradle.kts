@@ -27,7 +27,7 @@ android {
     }
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = false // todo: set true and test
         }
     }
 }

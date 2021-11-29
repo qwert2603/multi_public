@@ -1,4 +1,4 @@
-package com.qwert2603.multi_public.common.util
+package com.qwert2603.multi_public.util
 
 @Suppress("UNUSED")
 val Any?.allCases
