@@ -5,7 +5,7 @@ pluginManagement {
         mavenCentral()
         maven("https://maven.pkg.jetbrains.space/public/p/compose/dev")
     }
-    
+
 }
 rootProject.name = "multi_public"
 
@@ -13,4 +13,4 @@ rootProject.name = "multi_public"
 include(":android")
 include(":desktop")
 include(":common")
-
+include(":about")

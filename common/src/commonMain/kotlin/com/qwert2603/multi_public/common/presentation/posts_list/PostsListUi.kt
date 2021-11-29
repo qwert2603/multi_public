@@ -11,6 +11,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.qwert2603.multi_public.about.AboutUi
 import com.qwert2603.multi_public.common.domain.Post
 import com.qwert2603.multi_public.common.presentation.LoadingStateUi
 
@@ -24,7 +25,10 @@ fun PostsListUi(
     Scaffold(
         topBar = {
             TopAppBar(
-                title = { Text("Posts list") }
+                title = { Text("Posts list") },
+                actions = {
+                    AboutUi() // todo: remove
+                },
             )
         },
         modifier = modifier,

@@ -3,11 +3,11 @@ import org.jetbrains.compose.desktop.application.dsl.TargetFormat
 
 plugins {
     `kotlin-multiplatform`
-    id("org.jetbrains.compose") version "1.0.0-rc4"
+    `jetbrains-compose`
 }
 
-group = "com.qwert2603.multi_public"
-version = "1.0"
+group = Configs.group
+version = Configs.versionName
 
 kotlin {
     jvm {
@@ -22,7 +22,6 @@ kotlin {
                 implementation(compose.desktop.currentOs)
             }
         }
-        val jvmTest by getting
     }
 }
 
