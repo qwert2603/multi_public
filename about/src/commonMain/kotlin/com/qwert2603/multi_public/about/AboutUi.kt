@@ -7,7 +7,9 @@ import androidx.compose.ui.Modifier
 @Composable
 fun AboutUi(modifier: Modifier = Modifier) {
     Text(
-        "From :about module",
+        "From :about on $platformAbout",
         modifier = modifier,
     )
 }
+
+internal expect val platformAbout: String

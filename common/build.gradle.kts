@@ -12,31 +12,31 @@ kotlin {
             dependencies {
                 implementation(project(Modules.about))
 
-                api(compose.runtime)
-                api(compose.foundation)
-                api(compose.material)
+                implementation(compose.runtime)
+                implementation(compose.foundation)
+                implementation(compose.material)
 
-                api(Deps.Ktor.core)
-                api(Deps.Ktor.cio)
-                api(Deps.Ktor.serialization)
-                api(Deps.Ktor.logging)
-                api(Deps.KotlinX.serializationJson)
+                implementation(Deps.Ktor.core)
+                implementation(Deps.Ktor.cio)
+                implementation(Deps.Ktor.serialization)
+                implementation(Deps.Ktor.logging)
+                implementation(Deps.KotlinX.serializationJson)
 
-                api(Deps.Koin.core)
-                api(Deps.Decompose.decompose)
-                api(Deps.Decompose.extensionsComposeJetbrains)
+                implementation(Deps.Koin.core)
+                implementation(Deps.Decompose.decompose)
+                implementation(Deps.Decompose.extensionsComposeJetbrains)
             }
         }
         val androidMain by getting {
             dependencies {
-                api(Deps.AndroidX.appcompat)
-                api(Deps.AndroidX.coreKtx)
-                api(Deps.coilCompose)
+                implementation(Deps.AndroidX.appcompat)
+                implementation(Deps.AndroidX.coreKtx)
+                implementation(Deps.coilCompose)
             }
         }
         val desktopMain by getting {
             dependencies {
-                api(compose.preview)
+                implementation(compose.preview)
             }
         }
     }
