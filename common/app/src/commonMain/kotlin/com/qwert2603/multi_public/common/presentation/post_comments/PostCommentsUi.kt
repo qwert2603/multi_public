@@ -15,8 +15,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.qwert2603.multi_public.common.domain.PostComment
-import com.qwert2603.multi_public.common.presentation.LoadingStateUi
-import com.qwert2603.multi_public.common.util.UrlImage
+import com.qwert2603.multi_public.design.components.LoadingStateUi
+import com.qwert2603.multi_public.design.components.UrlImage
 
 @Composable
 fun PostCommentsUi(

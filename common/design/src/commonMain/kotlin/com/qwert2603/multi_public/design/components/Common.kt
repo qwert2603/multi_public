@@ -1,4 +1,4 @@
-package com.qwert2603.multi_public.common.presentation
+package com.qwert2603.multi_public.design.components
 
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button

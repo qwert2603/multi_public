@@ -17,6 +17,7 @@
             <option value="$PROJECT_DIR$/buildSrc" />
             <option value="$PROJECT_DIR$/common" />
             <option value="$PROJECT_DIR$/common/app" />
+            <option value="$PROJECT_DIR$/common/design" />
             <option value="$PROJECT_DIR$/common/util" />
             <option value="$PROJECT_DIR$/desktop" />
           </set>

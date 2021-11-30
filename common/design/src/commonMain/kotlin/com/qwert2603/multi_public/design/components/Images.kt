@@ -1,4 +1,4 @@
-package com.qwert2603.multi_public.common.util
+package com.qwert2603.multi_public.design.components
 
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier

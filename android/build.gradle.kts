@@ -9,7 +9,10 @@ version = Configs.versionName
 
 dependencies {
     implementation(project(Modules.common))
+
     implementation(Deps.AndroidX.activityCompose)
+    implementation(Deps.AndroidX.appcompat)
+    implementation(Deps.AndroidX.coreKtx)
 }
 
 android {

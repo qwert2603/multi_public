@@ -1,4 +1,4 @@
-package com.qwert2603.multi_public.common.util
+package com.qwert2603.multi_public.design.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.runtime.Composable

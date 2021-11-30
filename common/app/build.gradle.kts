@@ -12,6 +12,7 @@ kotlin {
             dependencies {
                 implementation(project(Modules.about))
                 implementation(project(Modules.util))
+                implementation(project(Modules.design))
 
                 implementation(compose.runtime)
                 implementation(compose.foundation)
@@ -32,7 +33,6 @@ kotlin {
             dependencies {
                 implementation(Deps.AndroidX.appcompat)
                 implementation(Deps.AndroidX.coreKtx)
-                implementation(Deps.coilCompose)
             }
         }
         val desktopMain by getting {

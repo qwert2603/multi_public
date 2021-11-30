@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.qwert2603.multi_public.about.AboutUi
 import com.qwert2603.multi_public.common.domain.Post
-import com.qwert2603.multi_public.common.presentation.LoadingStateUi
+import com.qwert2603.multi_public.design.components.LoadingStateUi
 
 @Composable
 fun PostsListUi(
