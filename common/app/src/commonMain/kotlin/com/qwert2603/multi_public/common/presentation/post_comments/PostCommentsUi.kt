@@ -11,6 +11,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.qwert2603.multi_public.common.domain.PostComment
@@ -47,21 +48,38 @@ fun PostCommentsUi(
             loadingState = state.postCommentsLoadingState,
             onRetry = component::onRetryClicked,
             successContent = { postComments ->
-                LazyColumn {
-                    items(postComments) { postComment ->
-                        PostComment(postComments = postComment)
-                        if (postComment.thread != null) {
-                            Column(modifier = Modifier.padding(start = 24.dp)) {
-                                postComment.thread.forEach {
-                                    Divider(thickness = 1.dp)
-                                    PostComment(postComments = it)
+                if (postComments.isEmpty()) {
+                    NoCommentsPlaceholder()
+                } else {
+                    LazyColumn {
+                        items(postComments) { postComment ->
+                            PostComment(postComments = postComment)
+                            if (postComment.thread != null) {
+                                Column(modifier = Modifier.padding(start = 24.dp)) {
+                                    postComment.thread.forEach {
+                                        Divider(thickness = 1.dp)
+                                        PostComment(postComments = it)
+                                    }
                                 }
                             }
+                            Divider(thickness = 2.dp)
                         }
-                        Divider(thickness = 2.dp)
                     }
                 }
             },
+        )
+    }
+}
+
+@Composable
+private fun NoCommentsPlaceholder(modifier: Modifier = Modifier) {
+    Box(
+        modifier = modifier.fillMaxSize(),
+    ) {
+        Text(
+            "No comments.",
+            style = MaterialTheme.typography.h5,
+            modifier = Modifier.align(BiasAlignment(horizontalBias = 0f, verticalBias = -0.3f)),
         )
     }
 }
