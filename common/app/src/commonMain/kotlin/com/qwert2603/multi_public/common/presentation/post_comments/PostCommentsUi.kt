@@ -3,6 +3,7 @@ package com.qwert2603.multi_public.common.presentation.post_comments
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountCircle
@@ -17,6 +18,8 @@ import androidx.compose.ui.unit.dp
 import com.qwert2603.multi_public.common.domain.PostComment
 import com.qwert2603.multi_public.design.components.LoadingStateUi
 import com.qwert2603.multi_public.design.components.UrlImage
+import com.qwert2603.multi_public.design.components.VerticalScrollbar
+import com.qwert2603.multi_public.design.components.verticalScrollbarWidth
 import com.qwert2603.multi_public.util.DateTimeUtil
 
 @Composable
@@ -51,19 +54,31 @@ fun PostCommentsUi(
                 if (postComments.isEmpty()) {
                     NoCommentsPlaceholder()
                 } else {
-                    LazyColumn {
-                        items(postComments) { postComment ->
-                            PostComment(postComments = postComment)
-                            if (postComment.thread != null) {
-                                Column(modifier = Modifier.padding(start = 24.dp)) {
-                                    postComment.thread.forEach {
-                                        Divider(thickness = 1.dp)
-                                        PostComment(postComments = it)
+                    Box {
+                        val lazyListState = rememberLazyListState()
+
+                        LazyColumn(
+                            state = lazyListState,
+                            modifier = Modifier.padding(end = verticalScrollbarWidth),
+                        )  {
+                            items(postComments) { postComment ->
+                                PostComment(postComments = postComment)
+                                if (postComment.thread != null) {
+                                    Column(modifier = Modifier.padding(start = 24.dp)) {
+                                        postComment.thread.forEach {
+                                            Divider(thickness = 1.dp)
+                                            PostComment(postComments = it)
+                                        }
                                     }
                                 }
+                                Divider(thickness = 2.dp)
                             }
-                            Divider(thickness = 2.dp)
                         }
+
+                        VerticalScrollbar(
+                            lazyListState = lazyListState,
+                            modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight(),
+                        )
                     }
                 }
             },

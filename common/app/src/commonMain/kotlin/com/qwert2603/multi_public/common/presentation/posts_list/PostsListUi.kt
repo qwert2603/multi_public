@@ -4,6 +4,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
@@ -12,11 +13,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.qwert2603.multi_public.common.domain.Post
 import com.qwert2603.multi_public.design.components.LoadingStateUi
 import com.qwert2603.multi_public.design.components.UrlImage
+import com.qwert2603.multi_public.design.components.VerticalScrollbar
+import com.qwert2603.multi_public.design.components.verticalScrollbarWidth
 import com.qwert2603.multi_public.util.DateTimeUtil
 import com.qwert2603.multi_public.util.allCases
 
@@ -49,11 +53,23 @@ fun PostsListUi(
             loadingState = state.postsListLoadingState,
             onRetry = component::onRetryClicked,
             successContent = { postsList ->
-                LazyColumn {
-                    items(postsList) { post ->
-                        PostItem(post = post, onClick = { component.onPostClicked(post.id) })
-                        Divider()
+                Box {
+                    val lazyListState = rememberLazyListState()
+
+                    LazyColumn(
+                        state = lazyListState,
+                        modifier = Modifier.padding(end = verticalScrollbarWidth),
+                    ) {
+                        items(postsList) { post ->
+                            PostItem(post = post, onClick = { component.onPostClicked(post.id) })
+                            Divider()
+                        }
                     }
+
+                    VerticalScrollbar(
+                        lazyListState = lazyListState,
+                        modifier = Modifier.align(Alignment.CenterEnd).fillMaxHeight(),
+                    )
                 }
             },
         )
