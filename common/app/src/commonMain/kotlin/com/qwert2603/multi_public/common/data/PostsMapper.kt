@@ -16,7 +16,18 @@ class PostsMapper {
         repostsCount = post.reposts.toIntOrZero(),
         commentsCount = post.comments.toIntOrZero(),
         viewsCount = post.views.toIntOrZero(),
+        attachments = post.attachments?.mapNotNull(::mapAttachment).orEmpty()
     )
 
     private fun PostsResponse.Count?.toIntOrZero(): Int = this?.count ?: 0
+
+    private fun mapAttachment(attachment: PostsResponse.Attachment): Post.Attachment? = when (attachment.type) {
+        "photo" -> attachment.photo?.let(::mapPhoto)
+        else -> null
+    }
+
+    private fun mapPhoto(photo: PostsResponse.Attachment.Photo): Post.Attachment.Photo? {
+        val url = photo.sizes.maxByOrNull { it.width * it.height }?.url ?: return null
+        return Post.Attachment.Photo(url = url)
+    }
 }

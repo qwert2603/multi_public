@@ -19,10 +19,29 @@ class PostsResponse(
         val likes: Count?,
         val reposts: Count?,
         val views: Count?,
+        val attachments: List<Attachment>?,
     )
 
     @Serializable
     class Count(
         val count: Int?,
     )
+
+    @Serializable
+    class Attachment(
+        val type: String,
+        val photo: Photo?,
+    ) {
+        @Serializable
+        class Photo(
+            val sizes: List<Size>,
+        )
+
+        @Serializable
+        class Size(
+            val url: String,
+            val width: Int,
+            val height: Int,
+        )
+    }
 }

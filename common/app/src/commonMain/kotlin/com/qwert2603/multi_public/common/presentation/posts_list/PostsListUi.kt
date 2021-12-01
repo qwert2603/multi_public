@@ -5,6 +5,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
@@ -14,6 +16,8 @@ import androidx.compose.ui.unit.dp
 import com.qwert2603.multi_public.about.AboutUi
 import com.qwert2603.multi_public.common.domain.Post
 import com.qwert2603.multi_public.design.components.LoadingStateUi
+import com.qwert2603.multi_public.design.components.UrlImage
+import com.qwert2603.multi_public.util.allCases
 
 @Composable
 fun PostsListUi(
@@ -64,6 +68,16 @@ fun PostItem(
             style = MaterialTheme.typography.body1,
         )
         Spacer(modifier = Modifier.height(12.dp))
+        post.attachments.forEach {
+            when (it) {
+                is Post.Attachment.Photo -> UrlImage(
+                    imageUrl = it.url,
+                    placeHolder = Icons.Default.ArrowDropDown,
+                    modifier = Modifier.fillMaxWidth().height(280.dp),
+                )
+            }.allCases
+            Spacer(modifier = Modifier.height(12.dp))
+        }
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
             modifier = Modifier.fillMaxWidth(),

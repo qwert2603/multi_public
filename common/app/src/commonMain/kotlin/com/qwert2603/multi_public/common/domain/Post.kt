@@ -7,4 +7,9 @@ data class Post(
     val repostsCount: Int,
     val commentsCount: Int,
     val viewsCount: Int,
-)
+    val attachments: List<Attachment>,
+) {
+    sealed interface Attachment {
+        data class Photo(val url: String) : Attachment
+    }
+}
