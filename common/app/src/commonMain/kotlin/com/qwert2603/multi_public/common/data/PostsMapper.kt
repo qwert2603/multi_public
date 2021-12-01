@@ -23,7 +23,10 @@ class PostsMapper {
 
     private fun mapAttachment(attachment: PostsResponse.Attachment): Post.Attachment? = when (attachment.type) {
         "photo" -> attachment.photo?.let(::mapPhoto)
-        else -> null
+        else -> {
+            println("Unknown attachment.type: ${attachment.type}")
+            null
+        }
     }
 
     private fun mapPhoto(photo: PostsResponse.Attachment.Photo): Post.Attachment.Photo? {
