@@ -1,6 +1,5 @@
 package com.qwert2603.multi_public.common.presentation.post_comments
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -30,12 +29,14 @@ fun PostCommentsUi(
             TopAppBar(
                 title = { Text("Comments") },
                 navigationIcon = {
-                    // todo: fix ripple and offset
-                    Icon(
-                        Icons.Default.ArrowBack,
-                        contentDescription = "Back",
-                        modifier = Modifier.clickable(onClick = component::onBackClicked),
-                    )
+                    IconButton(
+                        onClick = component::onBackClicked,
+                    ) {
+                        Icon(
+                            Icons.Default.ArrowBack,
+                            contentDescription = "Back",
+                        )
+                    }
                 },
             )
         },
