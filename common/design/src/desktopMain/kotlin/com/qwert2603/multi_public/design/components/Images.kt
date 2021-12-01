@@ -11,6 +11,8 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import com.qwert2603.multi_public.util.callForResult
 import com.qwert2603.multi_public.util.getOrNull
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import org.jetbrains.skia.Image.Companion.makeFromEncoded
 import java.awt.image.BufferedImage
@@ -52,10 +54,26 @@ fun fetchImage(url: String): ImageBitmap? {
         key1 = url,
         initialValue = null,
         producer = {
-            value = loadFullImage(url)
+            imagesCacheQueue[url]?.let { cached ->
+                value = cached
+                return@produceState
+            }
+
+            val imageBitmap = loadFullImage(url)
                 ?.let(::toByteArray)
                 ?.let(::makeFromEncoded)
                 ?.toComposeImageBitmap()
+
+            if (imageBitmap != null) {
+                imagesCacheMutex.withLock {
+                    imagesCacheQueue[url] = imageBitmap
+                    if (imagesCacheQueue.size > imagesCacheSize) {
+                        imagesCacheQueue.remove(imagesCacheQueue.keys.first())
+                    }
+                }
+            }
+
+            value = imageBitmap
         },
     )
     return imageBitmap
@@ -79,3 +97,7 @@ private suspend fun loadFullImage(source: String): BufferedImage? = withContext(
         bitmap
     }.getOrNull()
 }
+
+private val imagesCacheMutex = Mutex()
+private const val imagesCacheSize = 100
+private val imagesCacheQueue = LinkedHashMap<String, ImageBitmap>()
