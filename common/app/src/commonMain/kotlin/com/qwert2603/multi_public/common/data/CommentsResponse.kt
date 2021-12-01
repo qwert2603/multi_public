@@ -17,6 +17,7 @@ class CommentsResponse(
     class Comment(
         val id: Long,
         val text: String?,
+        val date: Long,
         val from_id: Long?,
         val likes: Count?,
         val thread: Response?,

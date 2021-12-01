@@ -16,6 +16,7 @@ import androidx.compose.ui.unit.dp
 import com.qwert2603.multi_public.common.domain.PostComment
 import com.qwert2603.multi_public.design.components.LoadingStateUi
 import com.qwert2603.multi_public.design.components.UrlImage
+import com.qwert2603.multi_public.util.DateTimeUtil
 
 @Composable
 fun PostCommentsUi(
@@ -90,11 +91,20 @@ private fun PostComment(
             Spacer(modifier = Modifier.height(8.dp))
             Text(postComments.text, style = MaterialTheme.typography.body1)
             Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                "${postComments.likesCount} like",
-                style = MaterialTheme.typography.caption,
-                modifier = Modifier.align(Alignment.End),
-            )
+            Row(
+                verticalAlignment = Alignment.Bottom,
+                horizontalArrangement = Arrangement.SpaceBetween,
+                modifier = Modifier.fillMaxWidth(),
+            ) {
+                Text(
+                    DateTimeUtil.formatDateTime(postComments.added),
+                    style = MaterialTheme.typography.body2,
+                )
+                Text(
+                    "${postComments.likesCount} like",
+                    style = MaterialTheme.typography.caption,
+                )
+            }
         }
     }
 }

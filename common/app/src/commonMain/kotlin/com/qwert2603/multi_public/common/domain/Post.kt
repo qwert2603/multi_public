@@ -1,8 +1,11 @@
 package com.qwert2603.multi_public.common.domain
 
+import java.time.ZonedDateTime
+
 data class Post(
     val id: Long,
     val text: String,
+    val added: ZonedDateTime,
     val likesCount: Int,
     val repostsCount: Int,
     val commentsCount: Int,

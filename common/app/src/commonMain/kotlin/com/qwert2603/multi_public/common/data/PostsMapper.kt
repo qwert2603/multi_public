@@ -12,6 +12,7 @@ class PostsMapper {
     private fun mapPost(post: PostsResponse.Post) = Post(
         id = post.id,
         text = post.text.orEmpty(),
+        added = ServiceMapperUtil.parseZonedDateTime(post.date),
         likesCount = post.likes.toIntOrZero(),
         repostsCount = post.reposts.toIntOrZero(),
         commentsCount = post.comments.toIntOrZero(),

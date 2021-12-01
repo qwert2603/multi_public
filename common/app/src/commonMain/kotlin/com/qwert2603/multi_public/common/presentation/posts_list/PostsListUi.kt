@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import com.qwert2603.multi_public.common.domain.Post
 import com.qwert2603.multi_public.design.components.LoadingStateUi
 import com.qwert2603.multi_public.design.components.UrlImage
+import com.qwert2603.multi_public.util.DateTimeUtil
 import com.qwert2603.multi_public.util.allCases
 
 @Composable
@@ -70,6 +71,11 @@ fun PostItem(
             .clickable { onClick() }
             .padding(16.dp)
     ) {
+        Text(
+            DateTimeUtil.formatDateTime(post.added),
+            style = MaterialTheme.typography.body2,
+        )
+        Spacer(modifier = Modifier.height(8.dp))
         Text(
             post.text,
             style = MaterialTheme.typography.body1,

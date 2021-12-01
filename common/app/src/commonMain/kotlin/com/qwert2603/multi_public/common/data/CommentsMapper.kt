@@ -29,6 +29,7 @@ class CommentsMapper {
                 PostComment(
                     id = comment.id,
                     text = comment.text.orEmpty(),
+                    added = ServiceMapperUtil.parseZonedDateTime(comment.date),
                     likesCount = comment.likes?.count ?: 0,
                     authorName = comment.from_id?.let(::getAuthorName).orEmpty(),
                     authorAvatarUrl = comment.from_id?.let(::getAuthorAvatarUrl),

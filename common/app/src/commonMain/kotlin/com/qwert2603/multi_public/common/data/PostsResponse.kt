@@ -15,6 +15,7 @@ class PostsResponse(
     class Post(
         val id: Long,
         val text: String?,
+        val date: Long,
         val comments: Count?,
         val likes: Count?,
         val reposts: Count?,
