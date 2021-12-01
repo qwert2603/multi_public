@@ -6,6 +6,8 @@ interface PostsList {
 
     val state: StateFlow<PostsListState>
 
+    fun onRefresh()
+
     fun onRetryClicked()
 
     fun onPostClicked(id: Long)

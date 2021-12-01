@@ -3,10 +3,7 @@ package com.qwert2603.multi_public.common.presentation.posts_list
 import com.arkivanov.decompose.ComponentContext
 import com.qwert2603.multi_public.common.domain.PostsInteractor
 import com.qwert2603.multi_public.common.util.createComponentScope
-import com.qwert2603.multi_public.util.CallResult
-import com.qwert2603.multi_public.util.Error
-import com.qwert2603.multi_public.util.LoadingState
-import com.qwert2603.multi_public.util.isError
+import com.qwert2603.multi_public.util.*
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
@@ -19,25 +16,35 @@ class PostsListComponent(
 
     private val componentScope = createComponentScope()
 
+    private var loadPostsJob by switchJob()
+
     override val state = MutableStateFlow(
         PostsListState(
             postsListLoadingState = LoadingState.None,
         )
     )
 
+    private fun updateState(update: (PostsListState) -> PostsListState) {
+        state.update(update)
+    }
+
     init {
         loadPostsList()
     }
 
     private fun loadPostsList() {
-        componentScope.launch {
-            state.update { it.copy(postsListLoadingState = LoadingState.Loading) }
+        loadPostsJob = componentScope.launch {
+            updateState { it.copy(postsListLoadingState = LoadingState.Loading) }
             val postsList = when (val result = postsInteractor.getPosts()) {
                 is CallResult.Error -> LoadingState.Error()
                 is CallResult.Success -> LoadingState.Success(result.data)
             }
-            state.update { it.copy(postsListLoadingState = postsList) }
+            updateState { it.copy(postsListLoadingState = postsList) }
         }
+    }
+
+    override fun onRefresh() {
+        loadPostsList()
     }
 
     override fun onRetryClicked() {
