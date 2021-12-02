@@ -36,6 +36,7 @@ class RootComponent(
         PostsListComponent(
             componentContext = componentContext,
             postsInteractor = get(),
+            urlLauncher = get(),
             onPostSelected = { router.push(Config.PostComments(postId = it)) }
         )
 

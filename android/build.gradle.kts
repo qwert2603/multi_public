@@ -16,11 +16,11 @@ dependencies {
 }
 
 android {
-    compileSdkVersion(Configs.compileSdk)
+    compileSdk = Configs.compileSdk
     defaultConfig {
         applicationId = Configs.applicationId
-        minSdkVersion(Configs.minSdk)
-        targetSdkVersion(Configs.targetSdk)
+        minSdk = Configs.minSdk
+        targetSdk = Configs.targetSdk
         versionCode = Configs.versionCode
         versionName = Configs.versionName
     }

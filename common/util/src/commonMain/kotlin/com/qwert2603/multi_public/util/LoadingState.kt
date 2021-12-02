@@ -11,4 +11,6 @@ sealed interface LoadingState<out E, out T> {
 
 fun LoadingState.Companion.Error(): LoadingState<Unit, Nothing> = LoadingState.Error(Unit)
 
-val LoadingState<*, *>.isError get() = this is LoadingState.Error<*>
+val LoadingState<*, *>.isError: Boolean get() = this is LoadingState.Error<*>
+
+val <T>LoadingState<*, T>.dataOrNull: T? get() = (this as? LoadingState.Success<T>)?.data

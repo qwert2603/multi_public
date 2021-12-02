@@ -14,6 +14,7 @@ class PostsResponse(
     @Serializable
     class Post(
         val id: Long,
+        val owner_id: Long,
         val text: String?,
         val date: Long,
         val comments: Count?,

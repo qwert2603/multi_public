@@ -17,7 +17,8 @@ class PostsMapper {
         repostsCount = post.reposts.toIntOrZero(),
         commentsCount = post.comments.toIntOrZero(),
         viewsCount = post.views.toIntOrZero(),
-        attachments = post.attachments?.mapNotNull(::mapAttachment).orEmpty()
+        attachments = post.attachments?.mapNotNull(::mapAttachment).orEmpty(),
+        postUrl = VkUtil.postUrl(ownerId = post.owner_id, postId = post.id),
     )
 
     private fun PostsResponse.Count?.toIntOrZero(): Int = this?.count ?: 0

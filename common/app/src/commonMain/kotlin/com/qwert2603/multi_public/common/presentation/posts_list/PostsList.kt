@@ -11,4 +11,6 @@ interface PostsList {
     fun onRetryClicked()
 
     fun onPostClicked(id: Long)
+
+    fun onOpenWebClicked(id: Long)
 }

@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
+import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -61,7 +62,11 @@ fun PostsListUi(
                         modifier = Modifier.padding(end = verticalScrollbarWidth),
                     ) {
                         items(postsList) { post ->
-                            PostItem(post = post, onClick = { component.onPostClicked(post.id) })
+                            PostItem(
+                                post = post,
+                                onClick = { component.onPostClicked(post.id) },
+                                onOpenWebClicked = { component.onOpenWebClicked(post.id) },
+                            )
                             Divider()
                         }
                     }
@@ -80,6 +85,7 @@ fun PostsListUi(
 fun PostItem(
     post: Post,
     onClick: () -> Unit,
+    onOpenWebClicked: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -87,10 +93,22 @@ fun PostItem(
             .clickable { onClick() }
             .padding(16.dp)
     ) {
-        Text(
-            DateTimeUtil.formatDateTime(post.added),
-            style = MaterialTheme.typography.body2,
-        )
+        Row(
+            horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Text(
+                DateTimeUtil.formatDateTime(post.added),
+                style = MaterialTheme.typography.body2,
+            )
+
+            IconButton(onClick = onOpenWebClicked) {
+                Icon(
+                    imageVector = Icons.Default.MoreVert, // todo: better icon
+                    contentDescription = "open in browser",
+                )
+            }
+        }
         Spacer(modifier = Modifier.height(8.dp))
         Text(
             post.text,

@@ -2,6 +2,7 @@ package com.qwert2603.multi_public.common.presentation.posts_list
 
 import com.arkivanov.decompose.ComponentContext
 import com.qwert2603.multi_public.common.domain.PostsInteractor
+import com.qwert2603.multi_public.common.util.UrlLauncher
 import com.qwert2603.multi_public.common.util.createComponentScope
 import com.qwert2603.multi_public.util.*
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -11,6 +12,7 @@ import kotlinx.coroutines.launch
 class PostsListComponent(
     componentContext: ComponentContext,
     private val postsInteractor: PostsInteractor,
+    private val urlLauncher: UrlLauncher,
     private val onPostSelected: (id: Long) -> Unit,
 ) : PostsList, ComponentContext by componentContext {
 
@@ -55,5 +57,13 @@ class PostsListComponent(
 
     override fun onPostClicked(id: Long) {
         onPostSelected(id)
+    }
+
+    override fun onOpenWebClicked(id: Long) {
+        val post = state.value.postsListLoadingState
+            .dataOrNull
+            ?.find { it.id == id }
+            ?: return
+        urlLauncher.openUrl(post.postUrl)
     }
 }
