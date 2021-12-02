@@ -1,7 +1,7 @@
 @PublishedApi
 internal object Versions {
 
-    const val jetbrainsCompose = "1.0.0-rc4"
+    const val jetbrainsCompose = "1.0.0"
     const val pluginSerialization = "1.5.31"
 
     object KotlinX {
