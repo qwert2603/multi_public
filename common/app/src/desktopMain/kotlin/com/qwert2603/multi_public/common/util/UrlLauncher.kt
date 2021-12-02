@@ -9,7 +9,12 @@ actual val urlLauncherDefinition: Definition<UrlLauncher> get() = { UrlLauncherI
 
 class UrlLauncherImpl : UrlLauncher {
 
-    override fun openUrl(url: String): Boolean {
+    override fun openUrl(url: String, onResult: ((Boolean) -> Unit)?) {
+        val result = openUrl(url)
+        onResult?.invoke(result)
+    }
+
+    private fun openUrl(url: String): Boolean {
         if (!Desktop.isDesktopSupported()) return false
 
         val desktop = Desktop.getDesktop()

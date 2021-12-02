@@ -5,5 +5,5 @@ import org.koin.core.definition.Definition
 expect val urlLauncherDefinition: Definition<UrlLauncher>
 
 interface UrlLauncher {
-    fun openUrl(url: String): Boolean
+    fun openUrl(url: String, onResult: ((Boolean) -> Unit)? = null)
 }
