@@ -8,12 +8,12 @@ import org.koin.java.KoinJavaComponent
 
 actual class PlatformDi(private val application: Application) {
 
-    actual fun createModule(): Module = module {
+    internal actual fun createModule(): Module = module {
         single { application }
         single { StartedActivityProvider(get()) }
     }
 
-    actual fun initApp() {
+    internal actual fun initApp() {
         val koin = KoinJavaComponent.getKoin()
         koin.get<StartedActivityProvider>().init()
     }

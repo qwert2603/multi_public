@@ -33,6 +33,7 @@ android {
     defaultConfig {
         minSdk = Configs.minSdk
         targetSdk = Configs.targetSdk
+        consumerProguardFile("consumer-rules.pro")
     }
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8

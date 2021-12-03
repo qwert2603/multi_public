@@ -29,8 +29,14 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     buildTypes {
-        getByName("release") {
-            isMinifyEnabled = false // todo: set true and test
+        getByName(BuildType.debug) {
+            applicationIdSuffix = ".debug"
+            versionNameSuffix = ".snapshot"
+        }
+        getByName(BuildType.release) {
+            isMinifyEnabled = true
+            isShrinkResources = true
+            signingConfig = signingConfigs.getByName("debug")
         }
     }
 }

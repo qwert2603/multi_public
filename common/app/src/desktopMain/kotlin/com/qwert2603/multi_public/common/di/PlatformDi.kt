@@ -4,6 +4,6 @@ import org.koin.core.module.Module
 import org.koin.dsl.module
 
 actual class PlatformDi {
-    actual fun createModule(): Module = module { }
-    actual fun initApp() = Unit
+    internal actual fun createModule(): Module = module { }
+    internal actual fun initApp() = Unit
 }
