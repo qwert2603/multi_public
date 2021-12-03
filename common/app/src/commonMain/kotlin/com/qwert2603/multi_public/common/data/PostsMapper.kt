@@ -25,6 +25,7 @@ class PostsMapper {
 
     private fun mapAttachment(attachment: PostsResponse.Attachment): Post.Attachment? = when (attachment.type) {
         "photo" -> attachment.photo?.let(::mapPhoto)
+        "audio" -> attachment.audio?.let(::mapAudio)
         else -> {
             println("Unknown attachment.type: ${attachment.type}")
             null
@@ -35,4 +36,9 @@ class PostsMapper {
         val url = photo.sizes.maxByOrNull { it.width * it.height }?.url ?: return null
         return Post.Attachment.Photo(url = url)
     }
+
+    private fun mapAudio(audio: PostsResponse.Attachment.Audio) = Post.Attachment.Audio(
+        artist = audio.artist,
+        title = audio.title,
+    )
 }

@@ -15,5 +15,6 @@ data class Post(
 ) {
     sealed interface Attachment {
         data class Photo(val url: String) : Attachment
+        data class Audio(val artist: String, val title: String) : Attachment
     }
 }

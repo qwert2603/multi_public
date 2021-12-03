@@ -16,6 +16,10 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.SpanStyle
+import androidx.compose.ui.text.buildAnnotatedString
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.qwert2603.multi_public.common.domain.Post
 import com.qwert2603.multi_public.design.components.LoadingStateUi
@@ -115,15 +119,28 @@ fun PostItem(
             style = MaterialTheme.typography.body1,
         )
         Spacer(modifier = Modifier.height(12.dp))
-        post.attachments.forEach {
-            when (it) {
+        post.attachments.forEach { attachment ->
+            when (attachment) {
                 is Post.Attachment.Photo -> UrlImage(
-                    imageUrl = it.url,
+                    imageUrl = attachment.url,
                     placeHolder = Icons.Default.ArrowDropDown,
                     modifier = Modifier.fillMaxWidth().height(280.dp),
                 )
+                is Post.Attachment.Audio -> Row {
+                    Text(
+                        buildAnnotatedString {
+                            append("\uD83C\uDFB5 ")
+                            withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                                append(attachment.artist)
+                            }
+                            append(" — ")
+                            append(attachment.title)
+                        },
+                        style = MaterialTheme.typography.body1,
+                    )
+                }
             }.allCases
-            Spacer(modifier = Modifier.height(12.dp))
+            Spacer(modifier = Modifier.height(16.dp))
         }
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,
