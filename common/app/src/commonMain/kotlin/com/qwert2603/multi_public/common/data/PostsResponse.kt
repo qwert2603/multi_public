@@ -34,6 +34,7 @@ class PostsResponse(
         val type: String,
         val photo: Photo?,
         val audio: Audio?,
+        val link: Link?,
     ) {
         @Serializable
         class Photo(
@@ -51,6 +52,13 @@ class PostsResponse(
         class Audio(
             val artist: String,
             val title: String,
+        )
+
+        @Serializable
+        class Link(
+            val url: String,
+            val title: String,
+            val photo: Photo?,
         )
     }
 }

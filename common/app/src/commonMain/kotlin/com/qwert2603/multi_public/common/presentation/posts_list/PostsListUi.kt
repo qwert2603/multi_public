@@ -1,5 +1,6 @@
 package com.qwert2603.multi_public.common.presentation.posts_list
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -10,15 +11,18 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowDropDown
 import androidx.compose.material.icons.filled.MoreVert
 import androidx.compose.material.icons.filled.Refresh
+import androidx.compose.material.icons.filled.Star
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.qwert2603.multi_public.common.domain.Post
@@ -69,7 +73,8 @@ fun PostsListUi(
                             PostItem(
                                 post = post,
                                 onClick = { component.onPostClicked(post.id) },
-                                onOpenWebClicked = { component.onOpenWebClicked(post.id) },
+                                onOpenPostWebClicked = { component.onOpenPostWebClicked(post.id) },
+                                onOpenLinkClicked = component::onOpenLinkClicked,
                             )
                             Divider()
                         }
@@ -89,7 +94,8 @@ fun PostsListUi(
 fun PostItem(
     post: Post,
     onClick: () -> Unit,
-    onOpenWebClicked: () -> Unit,
+    onOpenPostWebClicked: () -> Unit,
+    onOpenLinkClicked: (url: String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -106,7 +112,7 @@ fun PostItem(
                 style = MaterialTheme.typography.body2,
             )
 
-            IconButton(onClick = onOpenWebClicked) {
+            IconButton(onClick = onOpenPostWebClicked) {
                 Icon(
                     imageVector = Icons.Default.MoreVert, // todo: better icon
                     contentDescription = "open in browser",
@@ -138,6 +144,34 @@ fun PostItem(
                         },
                         style = MaterialTheme.typography.body1,
                     )
+                }
+                is Post.Attachment.Link -> Row(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(1.dp, Color.Gray)
+                        .clickable { onOpenLinkClicked(attachment.url) },
+                ) {
+                    UrlImage(
+                        imageUrl = attachment.photoUrl,
+                        placeHolder = Icons.Default.Star,
+                        modifier = Modifier.size(96.dp),
+                    )
+                    Column(
+                        modifier = Modifier.padding(12.dp),
+                    ) {
+                        Text(
+                            attachment.title,
+                            style = MaterialTheme.typography.h6,
+                        )
+                        Spacer(modifier = Modifier.height(12.dp))
+                        Text(
+                            attachment.url,
+                            style = MaterialTheme.typography.caption,
+                            maxLines = 1,
+                            color = Color.Blue,
+                            overflow = TextOverflow.Ellipsis,
+                        )
+                    }
                 }
                 is Post.Attachment.Unknown -> Text(
                     "\uD83D\uDCCE <Unknown attachment>",

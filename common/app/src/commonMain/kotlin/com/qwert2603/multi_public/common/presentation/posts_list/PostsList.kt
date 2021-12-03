@@ -12,5 +12,7 @@ interface PostsList {
 
     fun onPostClicked(id: Long)
 
-    fun onOpenWebClicked(id: Long)
+    fun onOpenPostWebClicked(id: Long)
+
+    fun onOpenLinkClicked(url: String)
 }

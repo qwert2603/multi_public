@@ -59,11 +59,15 @@ class PostsListComponent(
         onPostSelected(id)
     }
 
-    override fun onOpenWebClicked(id: Long) {
+    override fun onOpenPostWebClicked(id: Long) {
         val post = state.value.postsListLoadingState
             .dataOrNull
             ?.find { it.id == id }
             ?: return
         urlLauncher.openUrl(post.postUrl)
+    }
+
+    override fun onOpenLinkClicked(url: String) {
+        urlLauncher.openUrl(url)
     }
 }
