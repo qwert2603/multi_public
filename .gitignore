@@ -1,10 +1,37 @@
-# Project exclude paths
-/.gradle/
-/android/build/
-/android/build/intermediates/javac/debug/classes/
-/common/build/
-/common/build/classes/kotlin/desktop/main/
-/desktop/build/
-/desktop/build/classes/kotlin/jvm/main/
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+gen/
+obj/
+*.Po
+out/
+build/
+*.trace
+
+# Local configuration file (sdk path, etc)
+local.properties
+gdb.setup
+gdbserver
+Makefile*
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+.gradle/
+captures/
+
+# Mac OSX Files
+.DS_Store
+app_history.json
+
 
 /common/app/src/commonMain/kotlin/com/qwert2603/multi_public/common/Config.kt
