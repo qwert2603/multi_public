@@ -94,8 +94,8 @@ fun PostItem(
 ) {
     Column(
         modifier = modifier
-            .clickable { onClick() }
-            .padding(16.dp)
+            .clickable(onClick = onClick)
+            .padding(16.dp),
     ) {
         Row(
             horizontalArrangement = Arrangement.SpaceBetween,
@@ -139,8 +139,12 @@ fun PostItem(
                         style = MaterialTheme.typography.body1,
                     )
                 }
+                is Post.Attachment.Unknown -> Text(
+                    "\uD83D\uDCCE <Unknown attachment>",
+                    style = MaterialTheme.typography.body1,
+                )
             }.allCases
-            Spacer(modifier = Modifier.height(16.dp))
+            Spacer(modifier = Modifier.height(12.dp))
         }
         Row(
             horizontalArrangement = Arrangement.SpaceEvenly,

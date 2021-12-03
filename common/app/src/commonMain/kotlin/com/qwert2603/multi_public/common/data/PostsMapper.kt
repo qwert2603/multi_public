@@ -17,19 +17,22 @@ class PostsMapper {
         repostsCount = post.reposts.toIntOrZero(),
         commentsCount = post.comments.toIntOrZero(),
         viewsCount = post.views.toIntOrZero(),
-        attachments = post.attachments?.mapNotNull(::mapAttachment).orEmpty(),
+        attachments = post.attachments?.map(::mapAttachment).orEmpty(),
         postUrl = VkUtil.postUrl(ownerId = post.owner_id, postId = post.id),
     )
 
     private fun PostsResponse.Count?.toIntOrZero(): Int = this?.count ?: 0
 
-    private fun mapAttachment(attachment: PostsResponse.Attachment): Post.Attachment? = when (attachment.type) {
-        "photo" -> attachment.photo?.let(::mapPhoto)
-        "audio" -> attachment.audio?.let(::mapAudio)
-        else -> {
-            println("Unknown attachment.type: ${attachment.type}")
-            null
+    private fun mapAttachment(attachment: PostsResponse.Attachment): Post.Attachment {
+        val result = when (attachment.type) {
+            "photo" -> attachment.photo?.let(::mapPhoto)
+            "audio" -> attachment.audio?.let(::mapAudio)
+            else -> {
+                println("Unknown attachment.type: ${attachment.type}")
+                null
+            }
         }
+        return result ?: Post.Attachment.Unknown
     }
 
     private fun mapPhoto(photo: PostsResponse.Attachment.Photo): Post.Attachment.Photo? {
