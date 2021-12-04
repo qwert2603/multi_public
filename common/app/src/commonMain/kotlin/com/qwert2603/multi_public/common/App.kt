@@ -14,6 +14,7 @@ fun App() {
         val lifecycleRegistry = LifecycleRegistry()
         lifecycleRegistry.resume()
 
+        // todo: create RootComponent in platform
         val componentContext = DefaultComponentContext(lifecycleRegistry)
         val rootComponent = RootComponent(componentContext)
         RootUi(rootComponent)

@@ -28,23 +28,26 @@ import javax.imageio.ImageIO
 @Composable
 actual fun UrlImage(
     imageUrl: String?,
-    placeHolder: ImageVector,
+    placeHolder: ImageVector?,
     modifier: Modifier,
 ) {
     val imageAsset: ImageBitmap? = imageUrl?.let { fetchImage(it) }
 
-    if (imageAsset != null) {
-        Image(
-            imageAsset,
-            contentDescription = null,
-            modifier = modifier,
-        )
-    } else {
-        Image(
-            placeHolder,
-            contentDescription = null,
-            modifier = modifier,
-        )
+    when {
+        imageAsset != null -> {
+            Image(
+                imageAsset,
+                contentDescription = null,
+                modifier = modifier,
+            )
+        }
+        placeHolder != null -> {
+            Image(
+                placeHolder,
+                contentDescription = null,
+                modifier = modifier,
+            )
+        }
     }
 }
 

@@ -7,6 +7,6 @@ import androidx.compose.ui.graphics.vector.ImageVector
 @Composable
 expect fun UrlImage(
     imageUrl: String?,
-    placeHolder: ImageVector,
+    placeHolder: ImageVector?,
     modifier: Modifier = Modifier,
 )

@@ -26,6 +26,7 @@ class PostsMapper {
     private fun mapAttachment(attachment: PostsResponse.Attachment): Post.Attachment {
         val result = when (attachment.type) {
             "photo" -> attachment.photo?.let(::mapPhoto)
+            "video" -> attachment.video?.let(::mapVideo)
             "audio" -> attachment.audio?.let(::mapAudio)
             "link" -> attachment.link?.let(::mapLink)
             else -> {
@@ -36,10 +37,17 @@ class PostsMapper {
         return result ?: Post.Attachment.Unknown
     }
 
+    private fun List<PostsResponse.Attachment.Size>.getMaxSizeUrl() = this.maxByOrNull { it.width * it.height }?.url
+
     private fun mapPhoto(photo: PostsResponse.Attachment.Photo): Post.Attachment.Photo? {
-        val url = photo.sizes.maxByOrNull { it.width * it.height }?.url ?: return null
+        val url = photo.sizes.getMaxSizeUrl() ?: return null
         return Post.Attachment.Photo(url = url)
     }
+
+    private fun mapVideo(video: PostsResponse.Attachment.Video) = Post.Attachment.Video(
+        title = video.title.orEmpty(),
+        imageUrl = video.image?.getMaxSizeUrl() ?: video.first_frame?.getMaxSizeUrl(),
+    )
 
     private fun mapAudio(audio: PostsResponse.Attachment.Audio) = Post.Attachment.Audio(
         artist = audio.artist,

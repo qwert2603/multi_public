@@ -11,7 +11,7 @@ import coil.compose.rememberImagePainter
 @Composable
 actual fun UrlImage(
     imageUrl: String?,
-    placeHolder: ImageVector,
+    placeHolder: ImageVector?,
     modifier: Modifier,
 ) {
     Box(modifier) {
@@ -24,7 +24,7 @@ actual fun UrlImage(
             contentDescription = null,
             modifier = Modifier.fillMaxSize(),
         )
-        if (!imageLoaded) {
+        if (!imageLoaded && placeHolder != null) {
             Image(
                 imageVector = placeHolder,
                 contentDescription = null,

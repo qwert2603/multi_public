@@ -33,6 +33,7 @@ class PostsResponse(
     class Attachment(
         val type: String,
         val photo: Photo?,
+        val video: Video?,
         val audio: Audio?,
         val link: Link?,
     ) {
@@ -46,6 +47,13 @@ class PostsResponse(
             val url: String,
             val width: Int,
             val height: Int,
+        )
+
+        @Serializable
+        class Video(
+            val title: String?,
+            val image: List<Size>?,
+            val first_frame: List<Size>?,
         )
 
         @Serializable

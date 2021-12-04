@@ -1,17 +1,16 @@
 package com.qwert2603.multi_public.common.presentation.posts_list
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.ArrowDropDown
-import androidx.compose.material.icons.filled.MoreVert
-import androidx.compose.material.icons.filled.Refresh
-import androidx.compose.material.icons.filled.Star
+import androidx.compose.material.icons.filled.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
@@ -132,6 +131,38 @@ fun PostItem(
                     placeHolder = Icons.Default.ArrowDropDown,
                     modifier = Modifier.fillMaxWidth().height(280.dp),
                 )
+                is Post.Attachment.Video -> Column(
+                    modifier = Modifier
+                        .align(Alignment.CenterHorizontally)
+                        .width(280.dp),
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .defaultMinSize(minHeight = 100.dp)
+                            .border(1.dp, Color.Gray),
+                    ) {
+                        UrlImage(
+                            imageUrl = attachment.imageUrl,
+                            placeHolder = null,
+                        )
+                        Icon(
+                            Icons.Default.PlayArrow,
+                            contentDescription = null,
+                            modifier = Modifier
+                                .align(Alignment.Center)
+                                .size(48.dp)
+                                .background(color = Color.White.copy(alpha = 0.6f), shape = CircleShape),
+                        )
+                    }
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        attachment.title,
+                        style = MaterialTheme.typography.caption,
+                        color = Color.Blue,
+                        modifier = Modifier.align(Alignment.Start),
+                    )
+                }
                 is Post.Attachment.Audio -> Row {
                     Text(
                         buildAnnotatedString {
