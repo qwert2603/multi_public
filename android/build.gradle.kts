@@ -13,6 +13,8 @@ dependencies {
     implementation(Deps.AndroidX.activityCompose)
     implementation(Deps.AndroidX.appcompat)
     implementation(Deps.AndroidX.coreKtx)
+
+    implementation(Deps.Decompose.decompose)
 }
 
 android {

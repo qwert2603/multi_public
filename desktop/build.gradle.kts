@@ -20,6 +20,7 @@ kotlin {
             dependencies {
                 implementation(project(Modules.common))
                 implementation(compose.desktop.currentOs)
+                implementation(Deps.Decompose.decompose)
             }
         }
     }
