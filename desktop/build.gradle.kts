@@ -21,6 +21,7 @@ kotlin {
                 implementation(project(Modules.common))
                 implementation(compose.desktop.currentOs)
                 implementation(Deps.Decompose.decompose)
+                implementation(Deps.Decompose.extensionsComposeJetbrains)
             }
         }
     }
