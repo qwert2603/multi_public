@@ -204,6 +204,33 @@ fun PostItem(
                         )
                     }
                 }
+                is Post.Attachment.Poll -> Column {
+                    Text(
+                        attachment.question,
+                        style = MaterialTheme.typography.h6,
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        "${attachment.votes} votes",
+                        style = MaterialTheme.typography.body2,
+                    )
+                    Spacer(modifier = Modifier.height(12.dp))
+                    attachment.answers.forEach {
+                        Text(
+                            buildAnnotatedString {
+                                append("➡ ")
+                                withStyle(SpanStyle(fontWeight = FontWeight.Bold)) {
+                                    append(it.text)
+                                }
+                                append(" • ")
+                                withStyle(SpanStyle(color = Color.Gray)) {
+                                    append("${it.votes} votes")
+                                }
+                            },
+                            style = MaterialTheme.typography.body1,
+                        )
+                    }
+                }
                 is Post.Attachment.Unknown -> Text(
                     "\uD83D\uDCCE <Unknown attachment>",
                     style = MaterialTheme.typography.body1,

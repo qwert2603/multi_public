@@ -14,10 +14,19 @@ data class Post(
     val postUrl: String,
 ) {
     sealed interface Attachment {
+
         data class Photo(val url: String) : Attachment
+
         data class Video(val title: String, val imageUrl: String?) : Attachment
+
         data class Audio(val artist: String, val title: String) : Attachment
+
         data class Link(val title: String, val url: String, val photoUrl: String?) : Attachment
+
+        data class Poll(val question: String, val votes: Int, val answers: List<Answer>) : Attachment {
+            data class Answer(val text: String, val votes: Int)
+        }
+
         object Unknown : Attachment
     }
 }

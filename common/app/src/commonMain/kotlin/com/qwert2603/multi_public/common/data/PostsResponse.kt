@@ -36,6 +36,7 @@ class PostsResponse(
         val video: Video?,
         val audio: Audio?,
         val link: Link?,
+        val poll: Poll?,
     ) {
         @Serializable
         class Photo(
@@ -67,6 +68,19 @@ class PostsResponse(
             val url: String,
             val title: String,
             val photo: Photo?,
+        )
+
+        @Serializable
+        class Poll(
+            val question: String,
+            val votes: Int,
+            val answers: List<Answer>,
+        )
+
+        @Serializable
+        class Answer(
+            val text: String,
+            val votes: Int,
         )
     }
 }

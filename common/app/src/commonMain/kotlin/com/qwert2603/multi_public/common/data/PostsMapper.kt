@@ -29,6 +29,7 @@ class PostsMapper {
             "video" -> attachment.video?.let(::mapVideo)
             "audio" -> attachment.audio?.let(::mapAudio)
             "link" -> attachment.link?.let(::mapLink)
+            "poll" -> attachment.poll?.let(::mapPoll)
             else -> {
                 println("Unknown attachment.type: ${attachment.type}")
                 null
@@ -58,5 +59,16 @@ class PostsMapper {
         url = link.url,
         title = link.title,
         photoUrl = link.photo?.let(::mapPhoto)?.url,
+    )
+
+    private fun mapPoll(poll: PostsResponse.Attachment.Poll) = Post.Attachment.Poll(
+        question = poll.question,
+        votes = poll.votes,
+        answers = poll.answers.map {
+            Post.Attachment.Poll.Answer(
+                text = it.text,
+                votes = it.votes,
+            )
+        },
     )
 }
